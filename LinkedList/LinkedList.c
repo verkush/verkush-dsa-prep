@@ -53,6 +53,36 @@ Node * insertBeforeNode(int val, int node, Node * head)
     return head;
 }
 
+Node * insertAfterNode(int val, int node, Node * head)
+{
+    Node *newNode = (Node *) malloc(sizeof(Node));
+    newNode->data = val;
+    newNode->next = NULL;
+
+    Node *curr = head;
+
+    Node *nextNode = head;
+
+    while(curr->data != node)
+    {
+        curr = curr->next;
+    }
+
+    if(curr->next == NULL)
+    {
+        curr->next = newNode;
+    }
+    else 
+    {
+        nextNode = curr->next;
+
+        curr->next = newNode;
+        newNode->next = nextNode;
+        
+    }
+    return head;
+}
+
 void displayLinkedList(Node *head)
 {
     Node *temp = head;
@@ -78,6 +108,10 @@ int main()
     displayLinkedList(head);
 
     head = insertBeforeNode(5, 3, head);
+
+    displayLinkedList(head);
+
+    head = insertAfterNode(6, 1, head);
 
     displayLinkedList(head);
 
